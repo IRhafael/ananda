@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #E6007E; /* Cor solicitada */
+            background-color: #E6007E;
             color: white;
             font-family: 'Poppins', sans-serif;
             display: flex;
@@ -25,9 +25,9 @@
             min-height: 100vh;
             text-align: center;
             padding: 20px;
+            padding-bottom: 15vh; /* Ajuste para subir o conteúdo visualmente */
         }
 
-        /* Container principal */
         .container {
             max-width: 800px;
             width: 100%;
@@ -35,8 +35,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
         }
 
         h1 {
@@ -47,16 +45,16 @@
             letter-spacing: -1px;
         }
 
-        /* Estilo do Cronômetro */
         .countdown {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            margin-bottom: 40px; /* Espaço para o botão */
         }
 
         .time-box {
-            background-color: rgba(255, 255, 255, 0.15); /* Efeito translúcido igual à referência */
+            background-color: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(5px);
             border-radius: 12px;
             padding: 20px;
@@ -90,33 +88,119 @@
             opacity: 0.9;
         }
 
-        /* Responsividade */
-        @media (max-width: 600px) {
+        /* Estilo do Botão Avise-me */
+        .notify-btn {
+            background-color: white;
+            color: #E6007E;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .notify-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #f0f0f0;
+        }
+
+        /* Estilo da mensagem final e botão do Instagram */
+        .final-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .final-message h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .instagram-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .instagram-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* Responsividade aprimorada */
+        @media (max-width: 900px) {
+            .container {
+                max-width: 98vw;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
             h1 {
-                font-size: 2rem;
-                margin-bottom: 30px;
+                font-size: 2.2rem;
             }
-
             .countdown {
-                gap: 10px;
+                gap: 12px;
             }
-
             .time-box {
-                min-width: 80px;
-                min-height: 80px;
-                padding: 10px;
+                min-width: 90px;
+                min-height: 90px;
+                padding: 12px;
             }
-
             .number {
-                font-size: 2rem;
-            }
-
-            .label {
-                font-size: 0.7rem;
+                font-size: 2.2rem;
             }
         }
 
-        /* Animação suave de entrada */
+        @media (max-width: 600px) {
+            .container {
+                max-width: 100vw;
+                padding-left: 2vw;
+                padding-right: 2vw;
+            }
+            h1 {
+                font-size: 1.3rem;
+                margin-bottom: 16px;
+            }
+            .countdown {
+                gap: 6px;
+                margin-bottom: 24px;
+            }
+            .time-box {
+                min-width: 60px;
+                min-height: 60px;
+                padding: 6px;
+            }
+            .number {
+                font-size: 1.2rem;
+            }
+            .label {
+                font-size: 0.6rem;
+            }
+            .notify-btn, .instagram-btn {
+                font-size: 0.9rem;
+                padding: 10px 16px;
+            }
+            img[alt="Logo"] {
+                max-width: 60vw !important;
+            }
+            div[style*="font-size: 1.1rem"] {
+                font-size: 0.9rem !important;
+            }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -125,67 +209,88 @@
 </head>
 <body>
 
-
-    <div class="container" style="padding-top: 0; margin-top: 0;">
+    <div class="container" id="main-content">
         <!-- Logo acima do título -->
-        <img src="img/logo.PNG" alt="Logo" style="max-width: 340px; margin-bottom: 8px; display: block; margin-left: auto; margin-right: auto;">
+        <img src="img/logo.PNG" alt="Logo" style="max-width: 360px; margin-bottom: 4px; display: block; margin-left: auto; margin-right: auto;">
         <!-- Título -->
-        <h1 style="margin-bottom: 10px; text-align: center; width: 100%;">Trançando técnicas</h1>
+        <h1 style="margin-top: 0; margin-bottom: 6px;">Trançando técnicas</h1>
         <!-- Texto menor abaixo do título -->
-        <div style="font-size: 1.1rem; font-weight: 400; margin-bottom: 18px; opacity: 0.85; text-align: center; width: 100%;">faltam para o lançamento:</div>
+        <div style="font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; opacity: 0.85; text-align: center;">faltam para o lançamento:</div>
+        
+        <!-- Wrapper do Cronômetro -->
+        <div id="timer-wrapper">
+            <div class="countdown">
+                <div class="time-box">
+                    <span class="number" id="days">00</span>
+                    <span class="label">dias</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">horas</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">minutos</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">segundos</span>
+                </div>
+            </div>
 
-        <!-- Cronômetro -->
-        <div class="countdown" id="countdown">
-            <div class="time-box">
-                <span class="number" id="days">00</span>
-                <span class="label">dias</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="hours">00</span>
-                <span class="label">horas</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="minutes">00</span>
-                <span class="label">minutos</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="seconds">00</span>
-                <span class="label">segundos</span>
-            </div>
+
         </div>
     </div>
 
     <script>
+        // --- CONFIGURAÇÃO ---
+        // Altere este link para o seu perfil do Instagram real
+        const instagramLink = "https://www.instagram.com/seu_perfil_aqui"; 
+        
         // Data de lançamento: 29 de Novembro de 2025 às 18:00:00
         const launchDate = new Date('November 29, 2025 18:00:00').getTime();
+        // Para testar o fim do cronômetro agora, descomente a linha abaixo (vai simular uma data passada):
+        // const launchDate = new Date('November 23, 2025 18:00:00').getTime(); 
+
+        function registerInterest() {
+            // Aqui você pode integrar com um sistema real de email no futuro.
+            // Por enquanto, um alerta visual para o usuário.
+            alert("Obrigado! Você receberá um aviso assim que o curso for lançado.");
+        }
 
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = launchDate - now;
 
-            // Cálculos de tempo para dias, horas, minutos e segundos
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Atualiza o HTML
-            // Adicionamos '0' na frente se o número for menor que 10 para manter a estética
+            // Se o tempo acabar
+            if (distance < 0) {
+                // Substitui o conteúdo do container pelo aviso de lançamento
+                document.getElementById('timer-wrapper').innerHTML = `
+                    <div class="final-message">
+                        <h2>🚀 O curso está no ar!</h2>
+                        <p style="font-size: 1.1rem; margin-bottom: 20px;">Não perca tempo e garanta sua vaga agora.</p>
+                        <a href="${instagramLink}" target="_blank" class="instagram-btn">
+                            Acessar Instagram
+                        </a>
+                    </div>
+                `;
+                // Para o loop do cronômetro
+                return; 
+            }
+
+            // Atualiza os números se o tempo ainda não acabou
             document.getElementById('days').innerText = days < 10 ? '0' + days : days;
             document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
             document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
             document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
-
-            // Se a contagem terminar
-            if (distance < 0) {
-                document.getElementById('countdown').innerHTML = "<div style='font-size: 2rem; font-weight: bold;'>Curso Lançado!</div>";
-            }
         }
 
-        // Atualiza a cada 1 segundo
-        setInterval(updateCountdown, 1000);
-        
-        // Chamada inicial para não esperar 1 segundo para aparecer
+        const interval = setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
 
