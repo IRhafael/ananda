@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trançando técnicas - Lançamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #E6007E; /* Cor solicitada */
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 1.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -1px;
+        }
+
+        /* Estilo do Cronômetro */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background-color: rgba(255, 255, 255, 0.15); /* Efeito translúcido igual à referência */
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            padding: 20px;
+            min-width: 110px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .number {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .countdown {
+                gap: 10px;
+            }
+
+            .time-box {
+                min-width: 80px;
+                min-height: 80px;
+                padding: 10px;
+            }
+
+            .number {
+                font-size: 2rem;
+            }
+
+            .label {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Animação suave de entrada */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container" style="padding-top: 0; margin-top: 0;">
+        <!-- Logo acima do título -->
+        <img src="img/logo.PNG" alt="Logo" style="max-width: 340px; margin-bottom: 8px; display: block; margin-left: auto; margin-right: auto;">
+        <!-- Título -->
+        <h1 style="margin-bottom: 10px; text-align: center; width: 100%;">Trançando técnicas</h1>
+        <!-- Texto menor abaixo do título -->
+        <div style="font-size: 1.1rem; font-weight: 400; margin-bottom: 18px; opacity: 0.85; text-align: center; width: 100%;">faltam para o lançamento:</div>
+
+        <!-- Cronômetro -->
+        <div class="countdown" id="countdown">
+            <div class="time-box">
+                <span class="number" id="days">00</span>
+                <span class="label">dias</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="hours">00</span>
+                <span class="label">horas</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="minutes">00</span>
+                <span class="label">minutos</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="seconds">00</span>
+                <span class="label">segundos</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data de lançamento: 29 de Novembro de 2025 às 18:00:00
+        const launchDate = new Date('November 29, 2025 18:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            // Cálculos de tempo para dias, horas, minutos e segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Atualiza o HTML
+            // Adicionamos '0' na frente se o número for menor que 10 para manter a estética
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+
+            // Se a contagem terminar
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "<div style='font-size: 2rem; font-weight: bold;'>Curso Lançado!</div>";
+            }
+        }
+
+        // Atualiza a cada 1 segundo
+        setInterval(updateCountdown, 1000);
+        
+        // Chamada inicial para não esperar 1 segundo para aparecer
+        updateCountdown();
+    </script>
+
+</body>
+</html>
